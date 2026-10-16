@@ -137,6 +137,8 @@ dependencies {
 
   // Add a dependency on NitroModules
   implementation project(":react-native-nitro-modules")
+
+  implementation "androidx.tvprovider:tvprovider:1.1.0"
 }
 
 if (isNewArchitectureEnabled()) {
