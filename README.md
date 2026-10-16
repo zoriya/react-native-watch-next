@@ -1,18 +1,8 @@
 # react-native-watch-next
 
-react-native-watch-next is a react native package built with Nitro
+Publish programs to the android tv "Play Next"/"Continue watching" row, built with [Nitro](https://nitro.margelo.com).
 
-[![Version](https://img.shields.io/npm/v/react-native-watch-next.svg)](https://www.npmjs.com/package/react-native-watch-next)
-[![Downloads](https://img.shields.io/npm/dm/react-native-watch-next.svg)](https://www.npmjs.com/package/react-native-watch-next)
-[![License](https://img.shields.io/npm/l/react-native-watch-next.svg)](https://github.com/patrickkabwe/react-native-watch-next/LICENSE)
-
-## Requirements
-
-- React Native v0.76.0 or higher
-- Node 18.0.0 or higher
-
-> [!IMPORTANT]  
-> To Support `Nitro Views` you need to install React Native version v0.78.0 or higher.
+This is a thin wrapper over androidx.tvprovider's [`WatchNextProgram`](https://developer.android.com/reference/androidx/tvprovider/media/tv/WatchNextProgram).
 
 ## Installation
 
@@ -20,10 +10,30 @@ react-native-watch-next is a react native package built with Nitro
 bun add react-native-watch-next react-native-nitro-modules
 ```
 
-## Credits
+## Usage
 
-Bootstrapped with [create-nitro-module](https://github.com/patrickkabwe/create-nitro-module).
+```ts
+import { WatchNext } from "react-native-watch-next";
 
-## Contributing
+// `WatchNext` is null on platforms other than android.
+const id = await WatchNext?.insert({
+	internalProviderId: "movie-123",
+	type: "movie",
+	watchNextType: "continue",
+	title: "The Great Adventure",
+	posterArtUri: "https://example.com/poster.jpg",
+	posterArtAspectRatio: "2:3",
+	intentUri: "myapp://watch/movie-123",
+	lastPlaybackPositionMillis: 452_000,
+	durationMillis: 5_400_000,
+	lastEngagementTimeUtcMillis: Date.now(),
+});
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+// only returns programs inserted by this app
+const programs = await WatchNext?.list();
+
+// only the given fields are updated
+await WatchNext?.update(id, { lastPlaybackPositionMillis: 600_000 });
+
+await WatchNext?.remove(id);
+```
