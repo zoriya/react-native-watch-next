@@ -12,8 +12,7 @@ export type WatchNext = Omit<WatchNextSpec, "insert"> & {
 	insert(program: WatchNextProgram & { type: ProgramType }): Promise<number>;
 };
 
-// the watch next row only exists on android tv
 export const WatchNext: WatchNext | null =
-	Platform.OS === "android"
+	Platform.OS === "android" && Platform.isTV
 		? NitroModules.createHybridObject<WatchNextSpec>("WatchNext")
 		: null;

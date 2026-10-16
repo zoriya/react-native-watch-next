@@ -15,25 +15,27 @@ bun add react-native-watch-next react-native-nitro-modules
 ```ts
 import { WatchNext } from "react-native-watch-next";
 
-// `WatchNext` is null on platforms other than android.
-const id = await WatchNext?.insert({
-	internalProviderId: "movie-123",
-	type: "movie",
-	watchNextType: "continue",
-	title: "The Great Adventure",
-	posterArtUri: "https://example.com/poster.jpg",
-	posterArtAspectRatio: "2:3",
-	intentUri: "myapp://watch/movie-123",
-	lastPlaybackPositionMillis: 452_000,
-	durationMillis: 5_400_000,
-	lastEngagementTimeUtcMillis: Date.now(),
-});
+// `WatchNext` is null outside of android tv.
+if (WatchNext) {
+	const id = await WatchNext.insert({
+		internalProviderId: "movie-123",
+		type: "movie",
+		watchNextType: "continue",
+		title: "The Great Adventure",
+		posterArtUri: "https://example.com/poster.jpg",
+		posterArtAspectRatio: "2:3",
+		intentUri: "myapp://watch/movie-123",
+		lastPlaybackPositionMillis: 452_000,
+		durationMillis: 5_400_000,
+		lastEngagementTimeUtcMillis: Date.now(),
+	});
 
-// only returns programs inserted by this app
-const programs = await WatchNext?.list();
+	// only returns programs inserted by this app
+	const programs = await WatchNext.list();
 
-// only the given fields are updated
-await WatchNext?.update(id, { lastPlaybackPositionMillis: 600_000 });
+	// only the given fields are updated
+	await WatchNext.update(id, { lastPlaybackPositionMillis: 600_000 });
 
-await WatchNext?.remove(id);
+	await WatchNext.remove(id);
+}
 ```
