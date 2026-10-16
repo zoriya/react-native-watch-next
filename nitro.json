@@ -1,26 +1,20 @@
 {
-  "$schema": "https://nitro.margelo.com/nitro.schema.json",
-  "cxxNamespace": [
-    "watchnext"
-  ],
-  "ios": {
-    "iosModuleName": "WatchNext"
-  },
-  "android": {
-    "androidNamespace": [
-      "watchnext"
-    ],
-    "androidCxxLibName": "WatchNext"
-  },
-  "autolinking": {
-    "WatchNext": {
-      "android": {
-        "language": "kotlin",
-        "implementationClassName": "HybridWatchNext"
-      }
-    }
-  },
-  "ignorePaths": [
-    "**/node_modules"
-  ]
+	"$schema": "https://nitro.margelo.com/nitro.schema.json",
+	"cxxNamespace": ["watchnext"],
+	"ios": {
+		"iosModuleName": "WatchNext"
+	},
+	"android": {
+		"androidNamespace": ["watchnext"],
+		"androidCxxLibName": "WatchNext"
+	},
+	"autolinking": {
+		"WatchNext": {
+			"android": {
+				"language": "kotlin",
+				"implementationClassName": "HybridWatchNext"
+			}
+		}
+	},
+	"ignorePaths": ["**/node_modules"]
 }
