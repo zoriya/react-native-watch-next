@@ -51,6 +51,8 @@ namespace margelo::nitro::watchnext {
       double id = this->getFieldValue(fieldId);
       static const auto fieldBrowsable = clazz->getField<jboolean>("browsable");
       jboolean browsable = this->getFieldValue(fieldBrowsable);
+      static const auto fieldType = clazz->getField<JProgramType>("type");
+      jni::local_ref<JProgramType> type = this->getFieldValue(fieldType);
       static const auto fieldTitle = clazz->getField<jni::JString>("title");
       jni::local_ref<jni::JString> title = this->getFieldValue(fieldTitle);
       static const auto fieldEpisodeTitle = clazz->getField<jni::JString>("episodeTitle");
@@ -89,8 +91,6 @@ namespace margelo::nitro::watchnext {
       jni::local_ref<jni::JString> internalProviderId = this->getFieldValue(fieldInternalProviderId);
       static const auto fieldContentId = clazz->getField<jni::JString>("contentId");
       jni::local_ref<jni::JString> contentId = this->getFieldValue(fieldContentId);
-      static const auto fieldType = clazz->getField<JProgramType>("type");
-      jni::local_ref<JProgramType> type = this->getFieldValue(fieldType);
       static const auto fieldPreviewVideoUri = clazz->getField<jni::JString>("previewVideoUri");
       jni::local_ref<jni::JString> previewVideoUri = this->getFieldValue(fieldPreviewVideoUri);
       static const auto fieldPreviewAudioUri = clazz->getField<jni::JString>("previewAudioUri");
@@ -144,6 +144,7 @@ namespace margelo::nitro::watchnext {
       return StoredWatchNextProgram(
         id,
         static_cast<bool>(browsable),
+        type->toCpp(),
         title != nullptr ? std::make_optional(title->toStdString()) : std::nullopt,
         episodeTitle != nullptr ? std::make_optional(episodeTitle->toStdString()) : std::nullopt,
         seasonNumber != nullptr ? std::make_optional(seasonNumber->value()) : std::nullopt,
@@ -190,7 +191,6 @@ namespace margelo::nitro::watchnext {
         reviewRating != nullptr ? std::make_optional(reviewRating->toStdString()) : std::nullopt,
         internalProviderId != nullptr ? std::make_optional(internalProviderId->toStdString()) : std::nullopt,
         contentId != nullptr ? std::make_optional(contentId->toStdString()) : std::nullopt,
-        type != nullptr ? std::make_optional(type->toCpp()) : std::nullopt,
         previewVideoUri != nullptr ? std::make_optional(previewVideoUri->toStdString()) : std::nullopt,
         previewAudioUri != nullptr ? std::make_optional(previewAudioUri->toStdString()) : std::nullopt,
         lastPlaybackPositionMillis != nullptr ? std::make_optional(lastPlaybackPositionMillis->value()) : std::nullopt,
@@ -225,13 +225,14 @@ namespace margelo::nitro::watchnext {
      */
     [[maybe_unused]]
     static jni::local_ref<JStoredWatchNextProgram::javaobject> fromCpp(const StoredWatchNextProgram& value) {
-      using JSignature = JStoredWatchNextProgram(double, jboolean, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JStoredWatchNextProgram(double, jboolean, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         value.id,
         value.browsable,
+        JProgramType::fromCpp(value.type),
         value.title.has_value() ? jni::make_jstring(value.title.value()) : nullptr,
         value.episodeTitle.has_value() ? jni::make_jstring(value.episodeTitle.value()) : nullptr,
         value.seasonNumber.has_value() ? jni::JDouble::valueOf(value.seasonNumber.value()) : nullptr,
@@ -278,7 +279,6 @@ namespace margelo::nitro::watchnext {
         value.reviewRating.has_value() ? jni::make_jstring(value.reviewRating.value()) : nullptr,
         value.internalProviderId.has_value() ? jni::make_jstring(value.internalProviderId.value()) : nullptr,
         value.contentId.has_value() ? jni::make_jstring(value.contentId.value()) : nullptr,
-        value.type.has_value() ? JProgramType::fromCpp(value.type.value()) : nullptr,
         value.previewVideoUri.has_value() ? jni::make_jstring(value.previewVideoUri.value()) : nullptr,
         value.previewAudioUri.has_value() ? jni::make_jstring(value.previewAudioUri.value()) : nullptr,
         value.lastPlaybackPositionMillis.has_value() ? jni::JDouble::valueOf(value.lastPlaybackPositionMillis.value()) : nullptr,

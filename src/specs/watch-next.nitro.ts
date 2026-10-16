@@ -63,6 +63,7 @@ export interface WatchNextProgram {
 
 	internalProviderId?: string;
 	contentId?: string;
+	// required on insert, see `index.ts`
 	type?: ProgramType;
 	previewVideoUri?: string;
 	previewAudioUri?: string;
@@ -96,6 +97,7 @@ export interface StoredWatchNextProgram extends WatchNextProgram {
 	id: number;
 	// false when the user removed the program from the row, it can only be set by the system.
 	browsable: boolean;
+	type: ProgramType;
 }
 
 export interface WatchNext extends HybridObject<{ android: "kotlin" }> {

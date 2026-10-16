@@ -9,10 +9,10 @@
 
 // Forward declaration of `StoredWatchNextProgram` to properly resolve imports.
 namespace margelo::nitro::watchnext { struct StoredWatchNextProgram; }
-// Forward declaration of `ReviewRatingStyle` to properly resolve imports.
-namespace margelo::nitro::watchnext { enum class ReviewRatingStyle; }
 // Forward declaration of `ProgramType` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class ProgramType; }
+// Forward declaration of `ReviewRatingStyle` to properly resolve imports.
+namespace margelo::nitro::watchnext { enum class ReviewRatingStyle; }
 // Forward declaration of `AspectRatio` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class AspectRatio; }
 // Forward declaration of `Availability` to properly resolve imports.
@@ -31,12 +31,12 @@ namespace margelo::nitro::watchnext { struct WatchNextProgram; }
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include "JStoredWatchNextProgram.hpp"
+#include "ProgramType.hpp"
+#include "JProgramType.hpp"
 #include <string>
 #include <optional>
 #include "ReviewRatingStyle.hpp"
 #include "JReviewRatingStyle.hpp"
-#include "ProgramType.hpp"
-#include "JProgramType.hpp"
 #include "AspectRatio.hpp"
 #include "JAspectRatio.hpp"
 #include "Availability.hpp"

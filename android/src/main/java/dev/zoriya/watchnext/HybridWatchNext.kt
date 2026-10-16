@@ -129,7 +129,7 @@ private fun fromTv(p: TvWatchNextProgram) = StoredWatchNextProgram(
 
   internalProviderId = p.internalProviderId,
   contentId = p.contentId,
-  type = ProgramType.entries.find { it.toTv() == p.type },
+  type = ProgramType.entries.first { it.toTv() == p.type },
   previewVideoUri = p.previewVideoUri?.toString(),
   previewAudioUri = p.previewAudioUri?.toString(),
   lastPlaybackPositionMillis = p.lastPlaybackPositionMillis.orNull(),
