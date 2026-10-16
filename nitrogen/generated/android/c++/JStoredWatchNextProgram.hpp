@@ -49,8 +49,6 @@ namespace margelo::nitro::watchnext {
       static const auto clazz = javaClassStatic();
       static const auto fieldId = clazz->getField<double>("id");
       double id = this->getFieldValue(fieldId);
-      static const auto fieldPackageName = clazz->getField<jni::JString>("packageName");
-      jni::local_ref<jni::JString> packageName = this->getFieldValue(fieldPackageName);
       static const auto fieldTitle = clazz->getField<jni::JString>("title");
       jni::local_ref<jni::JString> title = this->getFieldValue(fieldTitle);
       static const auto fieldEpisodeTitle = clazz->getField<jni::JString>("episodeTitle");
@@ -145,7 +143,6 @@ namespace margelo::nitro::watchnext {
       jni::local_ref<jni::JDouble> lastEngagementTimeUtcMillis = this->getFieldValue(fieldLastEngagementTimeUtcMillis);
       return StoredWatchNextProgram(
         id,
-        packageName->toStdString(),
         title != nullptr ? std::make_optional(title->toStdString()) : std::nullopt,
         episodeTitle != nullptr ? std::make_optional(episodeTitle->toStdString()) : std::nullopt,
         seasonNumber != nullptr ? std::make_optional(seasonNumber->value()) : std::nullopt,
@@ -228,13 +225,12 @@ namespace margelo::nitro::watchnext {
      */
     [[maybe_unused]]
     static jni::local_ref<JStoredWatchNextProgram::javaobject> fromCpp(const StoredWatchNextProgram& value) {
-      using JSignature = JStoredWatchNextProgram(double, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JStoredWatchNextProgram(double, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         value.id,
-        jni::make_jstring(value.packageName),
         value.title.has_value() ? jni::make_jstring(value.title.value()) : nullptr,
         value.episodeTitle.has_value() ? jni::make_jstring(value.episodeTitle.value()) : nullptr,
         value.seasonNumber.has_value() ? jni::JDouble::valueOf(value.seasonNumber.value()) : nullptr,

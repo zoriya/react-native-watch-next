@@ -95,7 +95,6 @@ export interface WatchNextProgram {
 
 export interface StoredWatchNextProgram extends WatchNextProgram {
 	id: number;
-	packageName: string;
 }
 
 export interface WatchNext extends HybridObject<{ android: "kotlin" }> {

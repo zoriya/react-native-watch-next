@@ -105,7 +105,6 @@ private fun Long.orNull() = takeIf { it != -1L }?.toDouble()
 
 private fun fromTv(p: TvWatchNextProgram) = StoredWatchNextProgram(
   id = p.id.toDouble(),
-  packageName = p.packageName,
 
   title = p.title,
   episodeTitle = p.episodeTitle,
