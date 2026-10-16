@@ -4,10 +4,12 @@ import android.content.ContentResolver
 import android.content.ContentUris
 import android.media.tv.TvContentRating
 import android.net.Uri
+import androidx.annotation.Keep
 import androidx.tvprovider.media.tv.TvContractCompat
 import androidx.tvprovider.media.tv.TvContractCompat.PreviewProgramColumns
 import androidx.tvprovider.media.tv.TvContractCompat.WatchNextPrograms
 import androidx.tvprovider.media.tv.WatchNextProgram as TvWatchNextProgram
+import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 import com.margelo.nitro.watchnext.AspectRatio
@@ -21,6 +23,8 @@ import com.margelo.nitro.watchnext.TvSeriesItemType
 import com.margelo.nitro.watchnext.WatchNextProgram
 import com.margelo.nitro.watchnext.WatchNextType
 
+@Keep
+@DoNotStrip
 class HybridWatchNext : HybridWatchNextSpec() {
   private val resolver: ContentResolver
     get() = (NitroModules.applicationContext ?: throw Error("Missing context")).contentResolver
