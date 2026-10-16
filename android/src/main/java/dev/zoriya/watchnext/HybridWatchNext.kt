@@ -2,10 +2,12 @@ package dev.zoriya.watchnext
 
 import android.content.ContentResolver
 import android.content.ContentUris
+import android.content.Context
 import android.media.tv.TvContentRating
 import android.net.Uri
 import androidx.annotation.Keep
 import androidx.tvprovider.media.tv.TvContractCompat
+import androidx.tvprovider.media.tv.TvContractCompat.BaseTvColumns
 import androidx.tvprovider.media.tv.TvContractCompat.PreviewProgramColumns
 import androidx.tvprovider.media.tv.TvContractCompat.WatchNextPrograms
 import androidx.tvprovider.media.tv.WatchNextProgram as TvWatchNextProgram
@@ -26,13 +28,20 @@ import com.margelo.nitro.watchnext.WatchNextType
 @Keep
 @DoNotStrip
 class HybridWatchNext : HybridWatchNextSpec() {
+  private val context: Context
+    get() = NitroModules.applicationContext ?: throw Error("Missing context")
   private val resolver: ContentResolver
-    get() = (NitroModules.applicationContext ?: throw Error("Missing context")).contentResolver
+    get() = context.contentResolver
 
   override fun list() = Promise.parallel {
     resolver.query(WatchNextPrograms.CONTENT_URI, TvWatchNextProgram.PROJECTION, null, null, null)?.use { cursor ->
+      val packageIdx = cursor.getColumnIndexOrThrow(BaseTvColumns.COLUMN_PACKAGE_NAME)
       buildList {
-        while (cursor.moveToNext()) add(fromTv(TvWatchNextProgram.fromCursor(cursor)))
+        while (cursor.moveToNext()) {
+          // apps with READ_TV_LISTINGS also receive searchable programs of other apps
+          if (cursor.getString(packageIdx) != context.packageName) continue
+          add(fromTv(TvWatchNextProgram.fromCursor(cursor)))
+        }
       }.toTypedArray()
     } ?: emptyArray()
   }
