@@ -33,8 +33,6 @@ namespace margelo::nitro::watchnext { struct WatchNextProgram; }
 #include "JStoredWatchNextProgram.hpp"
 #include <string>
 #include <optional>
-#include <NitroModules/ArrayBuffer.hpp>
-#include <NitroModules/JArrayBuffer.hpp>
 #include "ReviewRatingStyle.hpp"
 #include "JReviewRatingStyle.hpp"
 #include "ProgramType.hpp"

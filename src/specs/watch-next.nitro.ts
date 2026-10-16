@@ -58,11 +58,6 @@ export interface WatchNextProgram {
 	posterArtUri?: string;
 	thumbnailUri?: string;
 	searchable?: boolean;
-	internalProviderData?: ArrayBuffer;
-	internalProviderFlag1?: number;
-	internalProviderFlag2?: number;
-	internalProviderFlag3?: number;
-	internalProviderFlag4?: number;
 	reviewRatingStyle?: ReviewRatingStyle;
 	reviewRating?: string;
 

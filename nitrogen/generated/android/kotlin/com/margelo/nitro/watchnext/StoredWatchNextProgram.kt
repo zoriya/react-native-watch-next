@@ -10,7 +10,7 @@ package com.margelo.nitro.watchnext
 import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import java.util.Objects
-import com.margelo.nitro.core.ArrayBuffer
+
 
 /**
  * Represents the JavaScript object/struct "StoredWatchNextProgram".
@@ -69,21 +69,6 @@ data class StoredWatchNextProgram(
   @DoNotStrip
   @Keep
   val searchable: Boolean?,
-  @DoNotStrip
-  @Keep
-  val internalProviderData: ArrayBuffer?,
-  @DoNotStrip
-  @Keep
-  val internalProviderFlag1: Double?,
-  @DoNotStrip
-  @Keep
-  val internalProviderFlag2: Double?,
-  @DoNotStrip
-  @Keep
-  val internalProviderFlag3: Double?,
-  @DoNotStrip
-  @Keep
-  val internalProviderFlag4: Double?,
   @DoNotStrip
   @Keep
   val reviewRatingStyle: ReviewRatingStyle?,
@@ -200,11 +185,6 @@ data class StoredWatchNextProgram(
       && Objects.deepEquals(this.posterArtUri, other.posterArtUri)
       && Objects.deepEquals(this.thumbnailUri, other.thumbnailUri)
       && Objects.deepEquals(this.searchable, other.searchable)
-      && Objects.deepEquals(this.internalProviderData, other.internalProviderData)
-      && Objects.deepEquals(this.internalProviderFlag1, other.internalProviderFlag1)
-      && Objects.deepEquals(this.internalProviderFlag2, other.internalProviderFlag2)
-      && Objects.deepEquals(this.internalProviderFlag3, other.internalProviderFlag3)
-      && Objects.deepEquals(this.internalProviderFlag4, other.internalProviderFlag4)
       && Objects.deepEquals(this.reviewRatingStyle, other.reviewRatingStyle)
       && Objects.deepEquals(this.reviewRating, other.reviewRating)
       && Objects.deepEquals(this.internalProviderId, other.internalProviderId)
@@ -257,11 +237,6 @@ data class StoredWatchNextProgram(
       posterArtUri,
       thumbnailUri,
       searchable,
-      internalProviderData,
-      internalProviderFlag1,
-      internalProviderFlag2,
-      internalProviderFlag3,
-      internalProviderFlag4,
       reviewRatingStyle,
       reviewRating,
       internalProviderId,
@@ -304,8 +279,8 @@ data class StoredWatchNextProgram(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(id: Double, packageName: String, title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, internalProviderData: ArrayBuffer?, internalProviderFlag1: Double?, internalProviderFlag2: Double?, internalProviderFlag3: Double?, internalProviderFlag4: Double?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, browsable: Boolean?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): StoredWatchNextProgram {
-      return StoredWatchNextProgram(id, packageName, title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, internalProviderData, internalProviderFlag1, internalProviderFlag2, internalProviderFlag3, internalProviderFlag4, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, browsable, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
+    private fun fromCpp(id: Double, packageName: String, title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, browsable: Boolean?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): StoredWatchNextProgram {
+      return StoredWatchNextProgram(id, packageName, title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, browsable, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
     }
   }
 }

@@ -9,7 +9,6 @@ import androidx.tvprovider.media.tv.TvContractCompat.PreviewProgramColumns
 import androidx.tvprovider.media.tv.TvContractCompat.WatchNextPrograms
 import androidx.tvprovider.media.tv.WatchNextProgram as TvWatchNextProgram
 import com.margelo.nitro.NitroModules
-import com.margelo.nitro.core.ArrayBuffer
 import com.margelo.nitro.core.Promise
 import com.margelo.nitro.watchnext.AspectRatio
 import com.margelo.nitro.watchnext.Availability
@@ -65,11 +64,6 @@ private fun toTv(p: WatchNextProgram): TvWatchNextProgram = TvWatchNextProgram.B
   p.posterArtUri?.let { setPosterArtUri(Uri.parse(it)) }
   p.thumbnailUri?.let { setThumbnailUri(Uri.parse(it)) }
   p.searchable?.let { setSearchable(it) }
-  p.internalProviderData?.let { setInternalProviderData(it.toByteArray()) }
-  p.internalProviderFlag1?.let { setInternalProviderFlag1(it.toLong()) }
-  p.internalProviderFlag2?.let { setInternalProviderFlag2(it.toLong()) }
-  p.internalProviderFlag3?.let { setInternalProviderFlag3(it.toLong()) }
-  p.internalProviderFlag4?.let { setInternalProviderFlag4(it.toLong()) }
   p.reviewRatingStyle?.let { setReviewRatingStyle(it.toTv()) }
   p.reviewRating?.let { setReviewRating(it) }
 
@@ -128,11 +122,6 @@ private fun fromTv(p: TvWatchNextProgram) = StoredWatchNextProgram(
   posterArtUri = p.posterArtUri?.toString(),
   thumbnailUri = p.thumbnailUri?.toString(),
   searchable = p.isSearchable,
-  internalProviderData = p.internalProviderDataByteArray?.let { ArrayBuffer.copy(it) },
-  internalProviderFlag1 = p.internalProviderFlag1?.toDouble(),
-  internalProviderFlag2 = p.internalProviderFlag2?.toDouble(),
-  internalProviderFlag3 = p.internalProviderFlag3?.toDouble(),
-  internalProviderFlag4 = p.internalProviderFlag4?.toDouble(),
   reviewRatingStyle = ReviewRatingStyle.entries.find { it.toTv() == p.reviewRatingStyle },
   reviewRating = p.reviewRating,
 
