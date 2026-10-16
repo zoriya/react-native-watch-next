@@ -49,6 +49,8 @@ namespace margelo::nitro::watchnext {
       static const auto clazz = javaClassStatic();
       static const auto fieldId = clazz->getField<double>("id");
       double id = this->getFieldValue(fieldId);
+      static const auto fieldBrowsable = clazz->getField<jboolean>("browsable");
+      jboolean browsable = this->getFieldValue(fieldBrowsable);
       static const auto fieldTitle = clazz->getField<jni::JString>("title");
       jni::local_ref<jni::JString> title = this->getFieldValue(fieldTitle);
       static const auto fieldEpisodeTitle = clazz->getField<jni::JString>("episodeTitle");
@@ -127,8 +129,6 @@ namespace margelo::nitro::watchnext {
       jni::local_ref<jni::JDouble> interactionCount = this->getFieldValue(fieldInteractionCount);
       static const auto fieldAuthor = clazz->getField<jni::JString>("author");
       jni::local_ref<jni::JString> author = this->getFieldValue(fieldAuthor);
-      static const auto fieldBrowsable = clazz->getField<jni::JBoolean>("browsable");
-      jni::local_ref<jni::JBoolean> browsable = this->getFieldValue(fieldBrowsable);
       static const auto fieldGenre = clazz->getField<jni::JString>("genre");
       jni::local_ref<jni::JString> genre = this->getFieldValue(fieldGenre);
       static const auto fieldStartTimeUtcMillis = clazz->getField<jni::JDouble>("startTimeUtcMillis");
@@ -143,6 +143,7 @@ namespace margelo::nitro::watchnext {
       jni::local_ref<jni::JDouble> lastEngagementTimeUtcMillis = this->getFieldValue(fieldLastEngagementTimeUtcMillis);
       return StoredWatchNextProgram(
         id,
+        static_cast<bool>(browsable),
         title != nullptr ? std::make_optional(title->toStdString()) : std::nullopt,
         episodeTitle != nullptr ? std::make_optional(episodeTitle->toStdString()) : std::nullopt,
         seasonNumber != nullptr ? std::make_optional(seasonNumber->value()) : std::nullopt,
@@ -209,7 +210,6 @@ namespace margelo::nitro::watchnext {
         interactionType != nullptr ? std::make_optional(interactionType->toCpp()) : std::nullopt,
         interactionCount != nullptr ? std::make_optional(interactionCount->value()) : std::nullopt,
         author != nullptr ? std::make_optional(author->toStdString()) : std::nullopt,
-        browsable != nullptr ? std::make_optional(static_cast<bool>(browsable->value())) : std::nullopt,
         genre != nullptr ? std::make_optional(genre->toStdString()) : std::nullopt,
         startTimeUtcMillis != nullptr ? std::make_optional(startTimeUtcMillis->value()) : std::nullopt,
         endTimeUtcMillis != nullptr ? std::make_optional(endTimeUtcMillis->value()) : std::nullopt,
@@ -225,12 +225,13 @@ namespace margelo::nitro::watchnext {
      */
     [[maybe_unused]]
     static jni::local_ref<JStoredWatchNextProgram::javaobject> fromCpp(const StoredWatchNextProgram& value) {
-      using JSignature = JStoredWatchNextProgram(double, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JStoredWatchNextProgram(double, jboolean, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         value.id,
+        value.browsable,
         value.title.has_value() ? jni::make_jstring(value.title.value()) : nullptr,
         value.episodeTitle.has_value() ? jni::make_jstring(value.episodeTitle.value()) : nullptr,
         value.seasonNumber.has_value() ? jni::JDouble::valueOf(value.seasonNumber.value()) : nullptr,
@@ -297,7 +298,6 @@ namespace margelo::nitro::watchnext {
         value.interactionType.has_value() ? JInteractionType::fromCpp(value.interactionType.value()) : nullptr,
         value.interactionCount.has_value() ? jni::JDouble::valueOf(value.interactionCount.value()) : nullptr,
         value.author.has_value() ? jni::make_jstring(value.author.value()) : nullptr,
-        value.browsable.has_value() ? jni::JBoolean::valueOf(value.browsable.value()) : nullptr,
         value.genre.has_value() ? jni::make_jstring(value.genre.value()) : nullptr,
         value.startTimeUtcMillis.has_value() ? jni::JDouble::valueOf(value.startTimeUtcMillis.value()) : nullptr,
         value.endTimeUtcMillis.has_value() ? jni::JDouble::valueOf(value.endTimeUtcMillis.value()) : nullptr,

@@ -83,7 +83,6 @@ export interface WatchNextProgram {
 	interactionType?: InteractionType;
 	interactionCount?: number;
 	author?: string;
-	browsable?: boolean;
 	genre?: string;
 	startTimeUtcMillis?: number;
 	endTimeUtcMillis?: number;
@@ -95,6 +94,8 @@ export interface WatchNextProgram {
 
 export interface StoredWatchNextProgram extends WatchNextProgram {
 	id: number;
+	// false when the user removed the program from the row, it can only be set by the system.
+	browsable: boolean;
 }
 
 export interface WatchNext extends HybridObject<{ android: "kotlin" }> {

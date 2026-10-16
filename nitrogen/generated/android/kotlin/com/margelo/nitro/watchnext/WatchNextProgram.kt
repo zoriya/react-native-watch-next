@@ -137,9 +137,6 @@ data class WatchNextProgram(
   val author: String?,
   @DoNotStrip
   @Keep
-  val browsable: Boolean?,
-  @DoNotStrip
-  @Keep
   val genre: String?,
   @DoNotStrip
   @Keep
@@ -201,7 +198,6 @@ data class WatchNextProgram(
       && Objects.deepEquals(this.interactionType, other.interactionType)
       && Objects.deepEquals(this.interactionCount, other.interactionCount)
       && Objects.deepEquals(this.author, other.author)
-      && Objects.deepEquals(this.browsable, other.browsable)
       && Objects.deepEquals(this.genre, other.genre)
       && Objects.deepEquals(this.startTimeUtcMillis, other.startTimeUtcMillis)
       && Objects.deepEquals(this.endTimeUtcMillis, other.endTimeUtcMillis)
@@ -251,7 +247,6 @@ data class WatchNextProgram(
       interactionType,
       interactionCount,
       author,
-      browsable,
       genre,
       startTimeUtcMillis,
       endTimeUtcMillis,
@@ -269,8 +264,8 @@ data class WatchNextProgram(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, browsable: Boolean?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): WatchNextProgram {
-      return WatchNextProgram(title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, browsable, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
+    private fun fromCpp(title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): WatchNextProgram {
+      return WatchNextProgram(title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
     }
   }
 }

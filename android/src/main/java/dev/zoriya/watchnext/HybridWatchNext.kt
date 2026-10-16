@@ -93,7 +93,6 @@ private fun toTv(p: WatchNextProgram): TvWatchNextProgram = TvWatchNextProgram.B
   p.interactionType?.let { setInteractionType(it.toTv()) }
   p.interactionCount?.let { setInteractionCount(it.toLong()) }
   p.author?.let { setAuthor(it) }
-  p.browsable?.let { setBrowsable(it) }
   p.genre?.let { setGenre(it) }
   p.startTimeUtcMillis?.let { setStartTimeUtcMillis(it.toLong()) }
   p.endTimeUtcMillis?.let { setEndTimeUtcMillis(it.toLong()) }

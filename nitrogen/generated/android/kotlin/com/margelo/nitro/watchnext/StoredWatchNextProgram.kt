@@ -23,6 +23,9 @@ data class StoredWatchNextProgram(
   val id: Double,
   @DoNotStrip
   @Keep
+  val browsable: Boolean,
+  @DoNotStrip
+  @Keep
   val title: String?,
   @DoNotStrip
   @Keep
@@ -140,9 +143,6 @@ data class StoredWatchNextProgram(
   val author: String?,
   @DoNotStrip
   @Keep
-  val browsable: Boolean?,
-  @DoNotStrip
-  @Keep
   val genre: String?,
   @DoNotStrip
   @Keep
@@ -166,6 +166,7 @@ data class StoredWatchNextProgram(
     if (this === other) return true
     if (other !is StoredWatchNextProgram) return false
     return Objects.deepEquals(this.id, other.id)
+      && Objects.deepEquals(this.browsable, other.browsable)
       && Objects.deepEquals(this.title, other.title)
       && Objects.deepEquals(this.episodeTitle, other.episodeTitle)
       && Objects.deepEquals(this.seasonNumber, other.seasonNumber)
@@ -205,7 +206,6 @@ data class StoredWatchNextProgram(
       && Objects.deepEquals(this.interactionType, other.interactionType)
       && Objects.deepEquals(this.interactionCount, other.interactionCount)
       && Objects.deepEquals(this.author, other.author)
-      && Objects.deepEquals(this.browsable, other.browsable)
       && Objects.deepEquals(this.genre, other.genre)
       && Objects.deepEquals(this.startTimeUtcMillis, other.startTimeUtcMillis)
       && Objects.deepEquals(this.endTimeUtcMillis, other.endTimeUtcMillis)
@@ -217,6 +217,7 @@ data class StoredWatchNextProgram(
   override fun hashCode(): Int {
     return arrayOf<Any?>(
       id,
+      browsable,
       title,
       episodeTitle,
       seasonNumber,
@@ -256,7 +257,6 @@ data class StoredWatchNextProgram(
       interactionType,
       interactionCount,
       author,
-      browsable,
       genre,
       startTimeUtcMillis,
       endTimeUtcMillis,
@@ -274,8 +274,8 @@ data class StoredWatchNextProgram(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(id: Double, title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, browsable: Boolean?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): StoredWatchNextProgram {
-      return StoredWatchNextProgram(id, title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, browsable, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
+    private fun fromCpp(id: Double, browsable: Boolean, title: String?, episodeTitle: String?, seasonNumber: Double?, episodeNumber: Double?, seasonTitle: String?, description: String?, longDescription: String?, videoWidth: Double?, videoHeight: Double?, canonicalGenres: Array<String>?, contentRatings: Array<String>?, audioLanguages: Array<String>?, posterArtUri: String?, thumbnailUri: String?, searchable: Boolean?, reviewRatingStyle: ReviewRatingStyle?, reviewRating: String?, internalProviderId: String?, contentId: String?, type: ProgramType?, previewVideoUri: String?, previewAudioUri: String?, lastPlaybackPositionMillis: Double?, durationMillis: Double?, intentUri: String?, transient: Boolean?, posterArtAspectRatio: AspectRatio?, thumbnailAspectRatio: AspectRatio?, logoUri: String?, logoContentDescription: String?, availability: Availability?, startingPrice: String?, offerPrice: String?, releaseDate: String?, itemCount: Double?, live: Boolean?, interactionType: InteractionType?, interactionCount: Double?, author: String?, genre: String?, startTimeUtcMillis: Double?, endTimeUtcMillis: Double?, tvSeriesItemType: TvSeriesItemType?, watchNextType: WatchNextType?, lastEngagementTimeUtcMillis: Double?): StoredWatchNextProgram {
+      return StoredWatchNextProgram(id, browsable, title, episodeTitle, seasonNumber, episodeNumber, seasonTitle, description, longDescription, videoWidth, videoHeight, canonicalGenres, contentRatings, audioLanguages, posterArtUri, thumbnailUri, searchable, reviewRatingStyle, reviewRating, internalProviderId, contentId, type, previewVideoUri, previewAudioUri, lastPlaybackPositionMillis, durationMillis, intentUri, transient, posterArtAspectRatio, thumbnailAspectRatio, logoUri, logoContentDescription, availability, startingPrice, offerPrice, releaseDate, itemCount, live, interactionType, interactionCount, author, genre, startTimeUtcMillis, endTimeUtcMillis, tvSeriesItemType, watchNextType, lastEngagementTimeUtcMillis)
     }
   }
 }
