@@ -29,7 +29,7 @@ import com.margelo.nitro.watchnext.WatchNextType
 @DoNotStrip
 class HybridWatchNext : HybridWatchNextSpec() {
   private val context: Context
-    get() = NitroModules.applicationContext ?: throw Error("Missing context")
+    get() = NitroModules.applicationContext ?: throw IllegalStateException("Missing context")
   private val resolver: ContentResolver
     get() = context.contentResolver
 
@@ -48,7 +48,7 @@ class HybridWatchNext : HybridWatchNextSpec() {
 
   override fun insert(program: WatchNextProgram) = Promise.parallel {
     val uri = resolver.insert(WatchNextPrograms.CONTENT_URI, toTv(program).toContentValues())
-      ?: throw Error("Could not insert the program")
+      ?: throw IllegalStateException("Could not insert the program")
     ContentUris.parseId(uri).toDouble()
   }
 
