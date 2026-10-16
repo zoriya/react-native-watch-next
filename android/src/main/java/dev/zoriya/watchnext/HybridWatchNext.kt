@@ -1,4 +1,4 @@
-package com.watchnext
+package dev.zoriya.watchnext
 
 import com.margelo.nitro.watchnext.HybridWatchNextSpec
 

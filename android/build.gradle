@@ -36,7 +36,7 @@ def getExtOrIntegerDefault(name) {
 }
 
 android {
-  namespace "com.watchnext"
+  namespace "dev.zoriya.watchnext"
 
   ndkVersion getExtOrDefault("ndkVersion")
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
@@ -143,6 +143,6 @@ if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
     libraryName = "WatchNext"
-    codegenJavaPackageName = "com.watchnext"
+    codegenJavaPackageName = "dev.zoriya.watchnext"
   }
 }
