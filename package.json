@@ -1,7 +1,7 @@
 {
 	"name": "react-native-watch-next",
-	"version": "0.1.0",
-	"description": "react-native-watch-next is a react native package built with Nitro",
+	"version": "0.0.0-development",
+	"description": "Publish programs to the android tv watch next row",
 	"main": "./lib/commonjs/index.js",
 	"module": "./lib/module/index.js",
 	"types": "./lib/typescript/src/index.d.ts",
@@ -9,10 +9,10 @@
 	"source": "src/index",
 	"scripts": {
 		"typecheck": "tsc --noEmit",
-		"clean": "git clean -dfX",
 		"release": "semantic-release",
 		"build": "bun run typecheck && bob build",
-		"codegen": "nitrogen --logLevel=\"debug\" && bun run build && node post-script.js",
+		"prepare": "bun run build",
+		"codegen": "nitrogen --logLevel=\"debug\" && node post-script.js",
 		"lint": "biome lint .",
 		"lint:fix": "biome lint . --write",
 		"format": "biome format .",
@@ -20,34 +20,29 @@
 	},
 	"keywords": [
 		"react-native",
-		"react-native-watch-next"
+		"android-tv",
+		"watch-next"
 	],
 	"files": [
 		"src",
-		"react-native.config.js",
 		"lib",
 		"nitrogen",
-		"cpp",
 		"nitro.json",
 		"android/build.gradle",
 		"android/fix-prefab.gradle",
 		"android/gradle.properties",
 		"android/CMakeLists.txt",
 		"android/src",
-		"ios/**/*.h",
-		"ios/**/*.m",
-		"ios/**/*.mm",
-		"ios/**/*.cpp",
-		"ios/**/*.swift",
-		"app.plugin.js",
-		"*.podspec",
 		"README.md"
 	],
-	"repository": "https://github.com/zoeroux/react-native-watch-next.git",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zoriya/react-native-watch-next.git"
+	},
 	"author": "Zoe Roux",
 	"license": "MIT",
-	"bugs": "https://github.com/zoeroux/react-native-watch-next/issues",
-	"homepage": "https://github.com/zoeroux/react-native-watch-next#readme",
+	"bugs": "https://github.com/zoriya/react-native-watch-next/issues",
+	"homepage": "https://github.com/zoriya/react-native-watch-next#readme",
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
@@ -56,13 +51,12 @@
 		"@biomejs/biome": "2.5.15",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
-		"@types/jest": "^29.5.12",
-		"@types/react": "19.2.0",
-		"nitrogen": "^0.36.1",
+		"@types/react": "19.2.17",
+		"nitrogen": "0.37.1",
 		"react": "19.2.3",
 		"react-native": "0.86.0",
-		"react-native-builder-bob": "^0.40.18",
-		"react-native-nitro-modules": "^0.36.1",
+		"react-native-builder-bob": "^0.43.2",
+		"react-native-nitro-modules": "0.37.1",
 		"conventional-changelog-conventionalcommits": "^10.2.1",
 		"semantic-release": "^25.0.7",
 		"typescript": "^6.0.3"
@@ -70,7 +64,7 @@
 	"peerDependencies": {
 		"react": "*",
 		"react-native": "*",
-		"react-native-nitro-modules": "*"
+		"react-native-nitro-modules": ">=0.37.0"
 	},
 	"react-native-builder-bob": {
 		"source": "src",
