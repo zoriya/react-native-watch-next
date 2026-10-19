@@ -47,7 +47,9 @@ class HybridWatchNext : HybridWatchNextSpec() {
   }
 
   override fun insert(program: WatchNextProgram) = Promise.parallel {
-    val uri = resolver.insert(WatchNextPrograms.CONTENT_URI, toTv(program).toContentValues())
+    // tvprovider's `getTvSeriesItemType` crashes when the column is unset, which would break `list`
+    val defaults = TvWatchNextProgram.Builder().setTvSeriesItemType(PreviewProgramColumns.TV_SERIES_ITEM_TYPE_EPISODE)
+    val uri = resolver.insert(WatchNextPrograms.CONTENT_URI, toTv(program, defaults).toContentValues())
       ?: throw IllegalStateException("Could not insert the program")
     ContentUris.parseId(uri).toDouble()
   }
@@ -61,7 +63,7 @@ class HybridWatchNext : HybridWatchNextSpec() {
   }
 }
 
-private fun toTv(p: WatchNextProgram): TvWatchNextProgram = TvWatchNextProgram.Builder().apply {
+private fun toTv(p: WatchNextProgram, builder: TvWatchNextProgram.Builder = TvWatchNextProgram.Builder()): TvWatchNextProgram = builder.apply {
   p.title?.let { setTitle(it) }
   p.episodeTitle?.let { setEpisodeTitle(it) }
   p.seasonNumber?.let { setSeasonNumber(it.toInt()) }
