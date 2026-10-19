@@ -39,7 +39,6 @@ export type InteractionType =
 	| "thumbs"
 	| "viewers";
 export type ReviewRatingStyle = "stars" | "thumbsUpDown" | "percentage";
-export type TvSeriesItemType = "episode" | "chapter";
 
 // see androidx.tvprovider's `WatchNextProgram`
 export interface WatchNextProgram {
@@ -87,7 +86,6 @@ export interface WatchNextProgram {
 	genre?: string;
 	startTimeUtcMillis?: number;
 	endTimeUtcMillis?: number;
-	tvSeriesItemType?: TvSeriesItemType;
 
 	watchNextType?: WatchNextType;
 	lastEngagementTimeUtcMillis?: number;

@@ -19,8 +19,6 @@ namespace margelo::nitro::watchnext { enum class AspectRatio; }
 namespace margelo::nitro::watchnext { enum class Availability; }
 // Forward declaration of `InteractionType` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class InteractionType; }
-// Forward declaration of `TvSeriesItemType` to properly resolve imports.
-namespace margelo::nitro::watchnext { enum class TvSeriesItemType; }
 // Forward declaration of `WatchNextType` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class WatchNextType; }
 // Forward declaration of `WatchNextProgram` to properly resolve imports.
@@ -43,8 +41,6 @@ namespace margelo::nitro::watchnext { struct WatchNextProgram; }
 #include "JAvailability.hpp"
 #include "InteractionType.hpp"
 #include "JInteractionType.hpp"
-#include "TvSeriesItemType.hpp"
-#include "JTvSeriesItemType.hpp"
 #include "WatchNextType.hpp"
 #include "JWatchNextType.hpp"
 #include "WatchNextProgram.hpp"

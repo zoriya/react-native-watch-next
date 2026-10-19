@@ -38,8 +38,6 @@ namespace margelo::nitro::watchnext { enum class AspectRatio; }
 namespace margelo::nitro::watchnext { enum class Availability; }
 // Forward declaration of `InteractionType` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class InteractionType; }
-// Forward declaration of `TvSeriesItemType` to properly resolve imports.
-namespace margelo::nitro::watchnext { enum class TvSeriesItemType; }
 // Forward declaration of `WatchNextType` to properly resolve imports.
 namespace margelo::nitro::watchnext { enum class WatchNextType; }
 
@@ -51,7 +49,6 @@ namespace margelo::nitro::watchnext { enum class WatchNextType; }
 #include "AspectRatio.hpp"
 #include "Availability.hpp"
 #include "InteractionType.hpp"
-#include "TvSeriesItemType.hpp"
 #include "WatchNextType.hpp"
 
 namespace margelo::nitro::watchnext {
@@ -103,13 +100,12 @@ namespace margelo::nitro::watchnext {
     std::optional<std::string> genre     SWIFT_PRIVATE;
     std::optional<double> startTimeUtcMillis     SWIFT_PRIVATE;
     std::optional<double> endTimeUtcMillis     SWIFT_PRIVATE;
-    std::optional<TvSeriesItemType> tvSeriesItemType     SWIFT_PRIVATE;
     std::optional<WatchNextType> watchNextType     SWIFT_PRIVATE;
     std::optional<double> lastEngagementTimeUtcMillis     SWIFT_PRIVATE;
 
   public:
     WatchNextProgram() = default;
-    explicit WatchNextProgram(std::optional<std::string> title, std::optional<std::string> episodeTitle, std::optional<double> seasonNumber, std::optional<double> episodeNumber, std::optional<std::string> seasonTitle, std::optional<std::string> description, std::optional<std::string> longDescription, std::optional<double> videoWidth, std::optional<double> videoHeight, std::optional<std::vector<std::string>> canonicalGenres, std::optional<std::vector<std::string>> contentRatings, std::optional<std::vector<std::string>> audioLanguages, std::optional<std::string> posterArtUri, std::optional<std::string> thumbnailUri, std::optional<bool> searchable, std::optional<ReviewRatingStyle> reviewRatingStyle, std::optional<std::string> reviewRating, std::optional<std::string> internalProviderId, std::optional<std::string> contentId, std::optional<ProgramType> type, std::optional<std::string> previewVideoUri, std::optional<std::string> previewAudioUri, std::optional<double> lastPlaybackPositionMillis, std::optional<double> durationMillis, std::optional<std::string> intentUri, std::optional<bool> transient, std::optional<AspectRatio> posterArtAspectRatio, std::optional<AspectRatio> thumbnailAspectRatio, std::optional<std::string> logoUri, std::optional<std::string> logoContentDescription, std::optional<Availability> availability, std::optional<std::string> startingPrice, std::optional<std::string> offerPrice, std::optional<std::string> releaseDate, std::optional<double> itemCount, std::optional<bool> live, std::optional<InteractionType> interactionType, std::optional<double> interactionCount, std::optional<std::string> author, std::optional<std::string> genre, std::optional<double> startTimeUtcMillis, std::optional<double> endTimeUtcMillis, std::optional<TvSeriesItemType> tvSeriesItemType, std::optional<WatchNextType> watchNextType, std::optional<double> lastEngagementTimeUtcMillis): title(title), episodeTitle(episodeTitle), seasonNumber(seasonNumber), episodeNumber(episodeNumber), seasonTitle(seasonTitle), description(description), longDescription(longDescription), videoWidth(videoWidth), videoHeight(videoHeight), canonicalGenres(canonicalGenres), contentRatings(contentRatings), audioLanguages(audioLanguages), posterArtUri(posterArtUri), thumbnailUri(thumbnailUri), searchable(searchable), reviewRatingStyle(reviewRatingStyle), reviewRating(reviewRating), internalProviderId(internalProviderId), contentId(contentId), type(type), previewVideoUri(previewVideoUri), previewAudioUri(previewAudioUri), lastPlaybackPositionMillis(lastPlaybackPositionMillis), durationMillis(durationMillis), intentUri(intentUri), transient(transient), posterArtAspectRatio(posterArtAspectRatio), thumbnailAspectRatio(thumbnailAspectRatio), logoUri(logoUri), logoContentDescription(logoContentDescription), availability(availability), startingPrice(startingPrice), offerPrice(offerPrice), releaseDate(releaseDate), itemCount(itemCount), live(live), interactionType(interactionType), interactionCount(interactionCount), author(author), genre(genre), startTimeUtcMillis(startTimeUtcMillis), endTimeUtcMillis(endTimeUtcMillis), tvSeriesItemType(tvSeriesItemType), watchNextType(watchNextType), lastEngagementTimeUtcMillis(lastEngagementTimeUtcMillis) {}
+    explicit WatchNextProgram(std::optional<std::string> title, std::optional<std::string> episodeTitle, std::optional<double> seasonNumber, std::optional<double> episodeNumber, std::optional<std::string> seasonTitle, std::optional<std::string> description, std::optional<std::string> longDescription, std::optional<double> videoWidth, std::optional<double> videoHeight, std::optional<std::vector<std::string>> canonicalGenres, std::optional<std::vector<std::string>> contentRatings, std::optional<std::vector<std::string>> audioLanguages, std::optional<std::string> posterArtUri, std::optional<std::string> thumbnailUri, std::optional<bool> searchable, std::optional<ReviewRatingStyle> reviewRatingStyle, std::optional<std::string> reviewRating, std::optional<std::string> internalProviderId, std::optional<std::string> contentId, std::optional<ProgramType> type, std::optional<std::string> previewVideoUri, std::optional<std::string> previewAudioUri, std::optional<double> lastPlaybackPositionMillis, std::optional<double> durationMillis, std::optional<std::string> intentUri, std::optional<bool> transient, std::optional<AspectRatio> posterArtAspectRatio, std::optional<AspectRatio> thumbnailAspectRatio, std::optional<std::string> logoUri, std::optional<std::string> logoContentDescription, std::optional<Availability> availability, std::optional<std::string> startingPrice, std::optional<std::string> offerPrice, std::optional<std::string> releaseDate, std::optional<double> itemCount, std::optional<bool> live, std::optional<InteractionType> interactionType, std::optional<double> interactionCount, std::optional<std::string> author, std::optional<std::string> genre, std::optional<double> startTimeUtcMillis, std::optional<double> endTimeUtcMillis, std::optional<WatchNextType> watchNextType, std::optional<double> lastEngagementTimeUtcMillis): title(title), episodeTitle(episodeTitle), seasonNumber(seasonNumber), episodeNumber(episodeNumber), seasonTitle(seasonTitle), description(description), longDescription(longDescription), videoWidth(videoWidth), videoHeight(videoHeight), canonicalGenres(canonicalGenres), contentRatings(contentRatings), audioLanguages(audioLanguages), posterArtUri(posterArtUri), thumbnailUri(thumbnailUri), searchable(searchable), reviewRatingStyle(reviewRatingStyle), reviewRating(reviewRating), internalProviderId(internalProviderId), contentId(contentId), type(type), previewVideoUri(previewVideoUri), previewAudioUri(previewAudioUri), lastPlaybackPositionMillis(lastPlaybackPositionMillis), durationMillis(durationMillis), intentUri(intentUri), transient(transient), posterArtAspectRatio(posterArtAspectRatio), thumbnailAspectRatio(thumbnailAspectRatio), logoUri(logoUri), logoContentDescription(logoContentDescription), availability(availability), startingPrice(startingPrice), offerPrice(offerPrice), releaseDate(releaseDate), itemCount(itemCount), live(live), interactionType(interactionType), interactionCount(interactionCount), author(author), genre(genre), startTimeUtcMillis(startTimeUtcMillis), endTimeUtcMillis(endTimeUtcMillis), watchNextType(watchNextType), lastEngagementTimeUtcMillis(lastEngagementTimeUtcMillis) {}
 
   public:
     friend bool operator==(const WatchNextProgram& lhs, const WatchNextProgram& rhs) = default;
@@ -167,7 +163,6 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "genre"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "startTimeUtcMillis"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "endTimeUtcMillis"))),
-        JSIConverter<std::optional<margelo::nitro::watchnext::TvSeriesItemType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "tvSeriesItemType"))),
         JSIConverter<std::optional<margelo::nitro::watchnext::WatchNextType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "watchNextType"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "lastEngagementTimeUtcMillis")))
       );
@@ -216,7 +211,6 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "genre"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.genre));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "startTimeUtcMillis"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.startTimeUtcMillis));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "endTimeUtcMillis"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.endTimeUtcMillis));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "tvSeriesItemType"), JSIConverter<std::optional<margelo::nitro::watchnext::TvSeriesItemType>>::toJSI(runtime, arg.tvSeriesItemType));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "watchNextType"), JSIConverter<std::optional<margelo::nitro::watchnext::WatchNextType>>::toJSI(runtime, arg.watchNextType));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "lastEngagementTimeUtcMillis"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.lastEngagementTimeUtcMillis));
       return obj;
@@ -271,7 +265,6 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "genre")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "startTimeUtcMillis")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "endTimeUtcMillis")))) return false;
-      if (!JSIConverter<std::optional<margelo::nitro::watchnext::TvSeriesItemType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "tvSeriesItemType")))) return false;
       if (!JSIConverter<std::optional<margelo::nitro::watchnext::WatchNextType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "watchNextType")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "lastEngagementTimeUtcMillis")))) return false;
       return true;

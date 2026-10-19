@@ -18,11 +18,9 @@
 #include "JInteractionType.hpp"
 #include "JProgramType.hpp"
 #include "JReviewRatingStyle.hpp"
-#include "JTvSeriesItemType.hpp"
 #include "JWatchNextType.hpp"
 #include "ProgramType.hpp"
 #include "ReviewRatingStyle.hpp"
-#include "TvSeriesItemType.hpp"
 #include "WatchNextType.hpp"
 #include <optional>
 #include <string>
@@ -135,8 +133,6 @@ namespace margelo::nitro::watchnext {
       jni::local_ref<jni::JDouble> startTimeUtcMillis = this->getFieldValue(fieldStartTimeUtcMillis);
       static const auto fieldEndTimeUtcMillis = clazz->getField<jni::JDouble>("endTimeUtcMillis");
       jni::local_ref<jni::JDouble> endTimeUtcMillis = this->getFieldValue(fieldEndTimeUtcMillis);
-      static const auto fieldTvSeriesItemType = clazz->getField<JTvSeriesItemType>("tvSeriesItemType");
-      jni::local_ref<JTvSeriesItemType> tvSeriesItemType = this->getFieldValue(fieldTvSeriesItemType);
       static const auto fieldWatchNextType = clazz->getField<JWatchNextType>("watchNextType");
       jni::local_ref<JWatchNextType> watchNextType = this->getFieldValue(fieldWatchNextType);
       static const auto fieldLastEngagementTimeUtcMillis = clazz->getField<jni::JDouble>("lastEngagementTimeUtcMillis");
@@ -213,7 +209,6 @@ namespace margelo::nitro::watchnext {
         genre != nullptr ? std::make_optional(genre->toStdString()) : std::nullopt,
         startTimeUtcMillis != nullptr ? std::make_optional(startTimeUtcMillis->value()) : std::nullopt,
         endTimeUtcMillis != nullptr ? std::make_optional(endTimeUtcMillis->value()) : std::nullopt,
-        tvSeriesItemType != nullptr ? std::make_optional(tvSeriesItemType->toCpp()) : std::nullopt,
         watchNextType != nullptr ? std::make_optional(watchNextType->toCpp()) : std::nullopt,
         lastEngagementTimeUtcMillis != nullptr ? std::make_optional(lastEngagementTimeUtcMillis->value()) : std::nullopt
       );
@@ -225,7 +220,7 @@ namespace margelo::nitro::watchnext {
      */
     [[maybe_unused]]
     static jni::local_ref<JStoredWatchNextProgram::javaobject> fromCpp(const StoredWatchNextProgram& value) {
-      using JSignature = JStoredWatchNextProgram(double, jboolean, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JTvSeriesItemType>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JStoredWatchNextProgram(double, jboolean, jni::alias_ref<JProgramType>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JReviewRatingStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JAspectRatio>, jni::alias_ref<JAspectRatio>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAvailability>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JInteractionType>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JWatchNextType>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -301,7 +296,6 @@ namespace margelo::nitro::watchnext {
         value.genre.has_value() ? jni::make_jstring(value.genre.value()) : nullptr,
         value.startTimeUtcMillis.has_value() ? jni::JDouble::valueOf(value.startTimeUtcMillis.value()) : nullptr,
         value.endTimeUtcMillis.has_value() ? jni::JDouble::valueOf(value.endTimeUtcMillis.value()) : nullptr,
-        value.tvSeriesItemType.has_value() ? JTvSeriesItemType::fromCpp(value.tvSeriesItemType.value()) : nullptr,
         value.watchNextType.has_value() ? JWatchNextType::fromCpp(value.watchNextType.value()) : nullptr,
         value.lastEngagementTimeUtcMillis.has_value() ? jni::JDouble::valueOf(value.lastEngagementTimeUtcMillis.value()) : nullptr
       );

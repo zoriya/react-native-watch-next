@@ -21,7 +21,6 @@ import com.margelo.nitro.watchnext.InteractionType
 import com.margelo.nitro.watchnext.ProgramType
 import com.margelo.nitro.watchnext.ReviewRatingStyle
 import com.margelo.nitro.watchnext.StoredWatchNextProgram
-import com.margelo.nitro.watchnext.TvSeriesItemType
 import com.margelo.nitro.watchnext.WatchNextProgram
 import com.margelo.nitro.watchnext.WatchNextType
 
@@ -47,9 +46,7 @@ class HybridWatchNext : HybridWatchNextSpec() {
   }
 
   override fun insert(program: WatchNextProgram) = Promise.parallel {
-    // tvprovider's `getTvSeriesItemType` crashes when the column is unset, which would break `list`
-    val defaults = TvWatchNextProgram.Builder().setTvSeriesItemType(PreviewProgramColumns.TV_SERIES_ITEM_TYPE_EPISODE)
-    val uri = resolver.insert(WatchNextPrograms.CONTENT_URI, toTv(program, defaults).toContentValues())
+    val uri = resolver.insert(WatchNextPrograms.CONTENT_URI, toTv(program).toContentValues())
       ?: throw IllegalStateException("Could not insert the program")
     ContentUris.parseId(uri).toDouble()
   }
@@ -63,7 +60,7 @@ class HybridWatchNext : HybridWatchNextSpec() {
   }
 }
 
-private fun toTv(p: WatchNextProgram, builder: TvWatchNextProgram.Builder = TvWatchNextProgram.Builder()): TvWatchNextProgram = builder.apply {
+private fun toTv(p: WatchNextProgram): TvWatchNextProgram = TvWatchNextProgram.Builder().apply {
   p.title?.let { setTitle(it) }
   p.episodeTitle?.let { setEpisodeTitle(it) }
   p.seasonNumber?.let { setSeasonNumber(it.toInt()) }
@@ -107,7 +104,6 @@ private fun toTv(p: WatchNextProgram, builder: TvWatchNextProgram.Builder = TvWa
   p.genre?.let { setGenre(it) }
   p.startTimeUtcMillis?.let { setStartTimeUtcMillis(it.toLong()) }
   p.endTimeUtcMillis?.let { setEndTimeUtcMillis(it.toLong()) }
-  p.tvSeriesItemType?.let { setTvSeriesItemType(it.toTv()) }
 
   p.watchNextType?.let { setWatchNextType(it.toTv()) }
   p.lastEngagementTimeUtcMillis?.let { setLastEngagementTimeUtcMillis(it.toLong()) }
@@ -164,7 +160,6 @@ private fun fromTv(p: TvWatchNextProgram) = StoredWatchNextProgram(
   genre = p.genre,
   startTimeUtcMillis = p.startTimeUtcMillis.orNull(),
   endTimeUtcMillis = p.endTimeUtcMillis.orNull(),
-  tvSeriesItemType = TvSeriesItemType.entries.find { it.toTv() == p.tvSeriesItemType },
 
   watchNextType = WatchNextType.entries.find { it.toTv() == p.watchNextType },
   lastEngagementTimeUtcMillis = p.lastEngagementTimeUtcMillis.orNull(),
@@ -227,9 +222,4 @@ private fun ReviewRatingStyle.toTv() = when (this) {
   ReviewRatingStyle.STARS -> 0
   ReviewRatingStyle.THUMBSUPDOWN -> 1
   ReviewRatingStyle.PERCENTAGE -> 2
-}
-
-private fun TvSeriesItemType.toTv() = when (this) {
-  TvSeriesItemType.EPISODE -> PreviewProgramColumns.TV_SERIES_ITEM_TYPE_EPISODE
-  TvSeriesItemType.CHAPTER -> PreviewProgramColumns.TV_SERIES_ITEM_TYPE_CHAPTER
 }
